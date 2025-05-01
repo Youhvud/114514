@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>恶臭数字文化研究中心</title>
+    <style>
+        :root {
+            --h-color: #8B4513; /* 粪黄色 */
+            --main-bg: #F0E68C;
+            --accent: #A0522D;
+        }
+
+        @keyframes bubble {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        body {
+            background: 
+                linear-gradient(45deg, 
+                    var(--main-bg) 25%,
+                    #DEB887 100%),
+                url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAIklEQVQIW2NkQAKrVq36zwjjgzhhYWGMYAEYB8RmROaABADeOQ8CXl/xfgAAAABJRU5ErkJggg==');
+            font-family: 'Microsoft YaHei', sans-serif;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* 沼气气泡背景 */
+        .bubble {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: rgba(139, 69, 19, 0.3);
+            border-radius: 50%;
+            animation: bubble 5s linear infinite;
+        }
+
+        /* 行为警告条 */
+        .warning-bar {
+            background: var(--h-color);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .warning-bar::after {
+            content: "⚠️⚠️⚠️";
+            position: absolute;
+            opacity: 0.3;
+            font-size: 3rem;
+            animation: warnFlow 20s linear infinite;
+        }
+
+        @keyframes warnFlow {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* 核心内容区 */
+        .content {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(255,255,255,0.8);
+            border-radius: 10px;
+            position: relative;
+        }
+
+        /* 神秘按钮 */
+        .mystery-btn {
+            background: var(--accent);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .mystery-btn:hover {
+            transform: scale(1.1);
+            background: #CD853F;
+        }
+
+        .mystery-btn:active::after {
+            content: "💨";
+            position: absolute;
+            animation: fart 0.5s;
+        }
+
+        @keyframes fart {
+            0% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-50px); }
+        }
+
+        /* 数字展示特效 */
+        .h-number {
+            font-size: 5rem;
+            text-shadow: 3px 3px var(--accent);
+            animation: glitch 1s infinite;
+        }
+
+        @keyframes glitch {
+            0% { text-shadow: 3px 3px var(--accent); }
+            25% { transform: skew(5deg); }
+            50% { text-shadow: -3px -3px var(--accent); }
+            75% { transform: skew(-5deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- 动态气泡 -->
+    <div class="bubble" style="left:10%; animation-delay:0s"></div>
+    <div class="bubble" style="left:30%; animation-delay:1s"></div>
+    <!-- 更多气泡... -->
+
+    <!-- 警告条 -->
+    <div class="warning-bar">
+        警告：本页面可能包含令人不适的数字文化研究内容
+    </div>
+
+    <main class="content">
+        <h1 class="h-number">114514</h1>
+        
+        <section>
+            <h2>📜 数字文化研究</h2>
+            <ul>
+                <li>数字语义学分析</li>
+                <li>恶臭系数计算器</li>
+                <li>哲学意义解构</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>🔞 危险功能</h2>
+            <button class="mystery-btn">启动沼气反应堆</button><a href=“https://www.360.com>鸡你太美</a>
+            <button class="mystery-btn">打开禁忌之箱</button>
+        </section>
+
+        <section>
+            <h2>📅 今日课题</h2>
+            <div id="experiment-box" style="border: 2px dashed var(--h-color); padding:1rem;">
+                <p>⚠️ 正在进行：24小时连续发酵观测实验</p>
+                <progress value="66" max="100"></progress>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // 气泡生成器
+        setInterval(() => {
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
+            bubble.style.left = Math.random() * 100 + '%';
+            bubble.style.animationDelay = Math.random() * 3 + 's';
+            document.body.appendChild(bubble);
+            setTimeout(() => bubble.remove(), 5000);
+        }, 1000);
+
+        // 按钮交互效果
+        document.querySelectorAll('.mystery-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.body.style.transform = `rotate(${Math.random()*4-2}deg)`;
+                setTimeout(() => {
+                    document.body.style.transform = 'rotate(0deg)';
+                }, 200);
+            });
+        });
+    </script>
+</body>
+</html>
